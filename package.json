@@ -1,0 +1,48 @@
+{
+  "name": "screenshot-tracker",
+  "main": "electron/main.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "electron": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron electron/main.js\"",
+    "dist": "npm run build && electron-builder",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.6",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "screenshot-desktop": "^1.15.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "concurrently": "^10.0.3",
+    "electron": "^43.1.1",
+    "electron-builder": "^26.15.3",
+    "oxlint": "^1.71.0",
+    "vite": "^8.1.1",
+    "wait-on": "^9.0.10"
+  },
+  "build": {
+    "appId": "com.yourname.screenshottracker",
+    "productName": "Screenshot Tracker",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
+  }
+}

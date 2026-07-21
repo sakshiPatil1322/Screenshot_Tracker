@@ -25,14 +25,15 @@ function createWindow() {
 }
 
 // Async screenshot function
+// Async screenshot function
 async function captureScreenshot() {
   if (isCapturing) return;
   isCapturing = true;
 
   try {
-    // Use userData folder for packaged app
-    const folder = path.join(app.getPath("userData"), "screenshots");
-    fs.ensureDirSync(folder);
+    // Store screenshots in Desktop\Screenshot Tracker\screenshots
+    const folder = path.join(app.getPath("desktop"), "screenshot-tracker", "screenshots");
+    fs.ensureDirSync(folder); // create folder if it doesn't exist
 
     const fileName = `screenshot_${new Date()
       .toISOString()
